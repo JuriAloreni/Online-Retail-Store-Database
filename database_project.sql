@@ -45,3 +45,22 @@ INSERT INTO Products VALUES (3, 'Office Desk Chair', 450.00, 10, 2);
 INSERT INTO Products VALUES (4, 'Bluetooth Headphones', 199.99, 30, 3);
 INSERT INTO Products VALUES (5, 'Skincare Serum', 85.00, 25, 1);
 SELECT * FROM Products;
+
+/* Ordersجدول ال */
+CREATE TABLE Orders (
+order_id INT PRIMARY KEY,
+customer_id INT NOT NULL,
+product_id INT NOT NULL,
+quantity INT NOT NULL CHECK (quantity > 0),
+order_date DATE NOT NULL,
+FOREIGN KEY (customer_id) REFERENCES Customers(customer_id),
+FOREIGN KEY (product_id) REFERENCES Products(product_id)
+);
+/* بياناته */
+INSERT INTO Orders VALUES (1, 1, 1, 1, DATE '2026-11-14');
+INSERT INTO Orders VALUES (2, 1, 2, 2, DATE '2026-11-06');
+INSERT INTO Orders VALUES (3, 2, 2, 3, DATE '2026-11-08');
+INSERT INTO Orders VALUES (4, 3, 4, 1, DATE '2026-11-10');
+INSERT INTO Orders VALUES (5, 4, 5, 2, DATE '2026-11-12');
+INSERT INTO Orders VALUES (6, 5, 3, 1, DATE '2026-11-13');
+SELECT * FROM Orders;
