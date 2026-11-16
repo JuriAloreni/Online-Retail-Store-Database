@@ -4,7 +4,7 @@ customer_id INT PRIMARY KEY,
 name VARCHAR(100) NOT NULL,
 email VARCHAR(150) UNIQUE NOT NULL,
 password_hash VARCHAR(255) NOT NULL,
-created_at DATE DEFAULT SYSDATE
+created_at DATE
 );
 /* بياناته */
 INSERT INTO Customers VALUES (1, 'Sara Ahmed', 'sara@example.com', 'DEMO_HASH_001', DATE '2026-11-01');
