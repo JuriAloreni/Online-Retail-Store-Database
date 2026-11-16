@@ -7,13 +7,11 @@ password_hash VARCHAR(255) NOT NULL,
 created_at DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 /* بياناته */
-INSERT INTO Customers (name, email, password_hash)
-VALUES
-('Sara Ahmed', 'sara@example.com', 'DEMO_HASH_001'),
-('Nora Ali', 'nora@example.com', 'DEMO_HASH_002'),
-('Maha Khalid', 'maha@example.com', 'DEMO_HASH_003'),
-('Lama Saad', 'lama@example.com', 'DEMO_HASH_004'),
-('Reem Omar', 'reem@example.com', 'DEMO_HASH_005'),
+INSERT INTO Customers VALUES('Sara Ahmed', 'sara@example.com', 'DEMO_HASH_001'),
+INSERT INTO Customers VALUES('Nora Ali', 'nora@example.com', 'DEMO_HASH_002'),
+INSERT INTO Customers VALUES('Maha Khalid', 'maha@example.com', 'DEMO_HASH_003'),
+INSERT INTO Customers VALUES('Lama Saad', 'lama@example.com', 'DEMO_HASH_004'),
+INSERT INTO Customers VALUES('Reem Omar', 'reem@example.com', 'DEMO_HASH_005'),
 SELECT * FROM Customers;
 
 /* categoriesجدول ال */
@@ -22,13 +20,11 @@ category_id INT PRIMARY KEY,
 category_name VARCHAR(80) NOT NULL
 );
 /* بياناته */
-INSERT INTO categories (category_id, category_name)
-VALUES 
-(1, 'Beauty and Care'),
-(2, 'Furniture'),
-(3, 'Electronics'),
-(4, 'Clothing'),
-(5, 'Books'),
+INSERT INTO categories VALUES (1, 'Beauty and Care'),
+INSERT INTO categories VALUES (2, 'Furniture'),
+INSERT INTO categories VALUES (3, 'Electronics'),
+INSERT INTO categories VALUES (4, 'Clothing'),
+INSERT INTO categories VALUES (5, 'Books'),
 SELECT * FROM categories;
 
 /* Productsجدول ال */
@@ -43,11 +39,9 @@ REFERENCES categories(category_id)
 ON DELETE SET NULL
 );
 /* بياناته */
-INSERT INTO Products (product_id, name, price, quantity_in_stock, category_id)
-VALUES
-(1, 'Laptop Dell Inspiron', 2500.00, 15, 3),
-(2, 'Wireless Mouse', 75.50, 50, 3),
-(3, 'Office Desk Chair', 450.00, 10, 2),
-(4, 'Bluetooth Headphones', 199.99, 30, 3),
-(5, 'Skincare Serum', 85.00, 25, 1),
+INSERT INTO Products VALUES (1, 'Laptop Dell Inspiron', 2500.00, 15, 3),
+INSERT INTO Products VALUES (2, 'Wireless Mouse', 75.50, 50, 3),
+INSERT INTO Products VALUES (3, 'Office Desk Chair', 450.00, 10, 2),
+INSERT INTO Products VALUES (4, 'Bluetooth Headphones', 199.99, 30, 3),
+INSERT INTO Products VALUES (5, 'Skincare Serum', 85.00, 25, 1),
 SELECT * FROM Products;
