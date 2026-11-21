@@ -330,3 +330,64 @@ BEGIN
 END;
 
 
+/*View 1*/
+-- display details of the products currently in customers' shopping carts
+CREATE VIEW Customer_Cart_Details AS
+SELECT
+    c.customer_id,
+    c.name,
+    p.product_id,
+    p.name AS product_name,
+    sh.quantity,
+    p.quantity_in_stock,
+    sh.added_at
+FROM Shopping_Cart sh
+JOIN Customers c ON sh.customer_id = c.customer_id
+JOIN Products p ON sh.product_id = p.product_id;
+
+/*View 2*/
+-- Display a summary that provides a comprehensive overview of each customer's activity.
+CREATE VIEW Customer_Activity_Summary AS
+SELECT
+    c.customer_id,
+    c.name,
+    c.email,
+    c.created_at,
+    COUNT(DISTINCT o.order_id) AS total_orders,
+    COUNT(DISTINCT sh.product_id) AS cart_items_count
+FROM Customers c
+LEFT JOIN Orders o ON c.customer_id = o.customer_id
+LEFT JOIN Shopping_Cart sh ON c.customer_id = sh.customer_id
+GROUP BY c.customer_id, c.name, c.email, c.created_at;
+
+/*View 3*/
+-- Display product details along with category name and stock status
+CREATE OR REPLACE VIEW Product_Catalog_Details AS
+SELECT 
+    p.product_id,
+    p.name AS product_name,
+    p.price,
+    p.quantity_in_stock,
+    c.category_name,
+    CASE 
+        WHEN p.quantity_in_stock = 0 THEN 'Out of Stock'
+        WHEN p.quantity_in_stock <= 15 THEN 'Low Stock'
+        ELSE 'In Stock'
+    END AS stock_status
+FROM Products p
+LEFT JOIN categories c ON p.category_id = c.category_id;
+
+/*View 4*/
+-- Summarize total products and total inventory value per category
+CREATE OR REPLACE VIEW Category_Inventory_Summary AS
+SELECT 
+    c.category_id,
+    c.category_name,
+    COUNT(p.product_id) AS total_products,
+    NVL(SUM(p.quantity_in_stock), 0) AS total_units_in_stock,
+    NVL(SUM(p.price * p.quantity_in_stock), 0) AS total_inventory_value
+FROM categories c
+LEFT JOIN Products p ON c.category_id = p.category_id
+GROUP BY c.category_id, c.category_name;
+
+
