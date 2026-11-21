@@ -106,7 +106,6 @@ INSERT INTO Shopping_Cart VALUES (1, 2, 2, DATE '2026-11-14');
 INSERT INTO Shopping_Cart VALUES (2, 4, 1, DATE '2026-11-15');
 INSERT INTO Shopping_Cart VALUES (3, 5, 3, DATE '2026-11-16');
 INSERT INTO Shopping_Cart VALUES (4, 3, 1, DATE '2026-11-17');
-
 SELECT * FROM Shopping_Cart;
 
 /* الكويريز، حاليا 20 فقط */
