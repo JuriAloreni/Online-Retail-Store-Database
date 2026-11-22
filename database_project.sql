@@ -383,8 +383,8 @@ SELECT
     c.category_id,
     c.category_name,
     COUNT(p.product_id) AS total_products,
-    NVL(SUM(p.quantity_in_stock), 0) AS total_units_in_stock,
-    NVL(SUM(p.price * p.quantity_in_stock), 0) AS total_inventory_value
+    SUM(p.quantity_in_stock) AS total_units_in_stock,
+    SUM(p.price * p.quantity_in_stock) AS total_inventory_value
 FROM categories c
 LEFT JOIN Products p ON c.category_id = p.category_id
 GROUP BY c.category_id, c.category_name;
